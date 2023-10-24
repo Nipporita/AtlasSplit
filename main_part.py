@@ -50,18 +50,27 @@ def run(args):
         try:
             if atlas_name[index] == texture_names[index]:
                 name, group = func.pos_spilt(atlas[index])
+                for i in group:
+                    print(i)
                 func.spilt_tex(texture[index], group, name, args.save_path)
                 print(f'完成一个，当前第{count}个，为{name}')
                 count += 1
         except IndexError:
             continue
 
-    print("完成，将于15s后关闭")
+    #print("完成，将于15s后关闭")
 
-    time.sleep(15)
+    #time.sleep(15)
+
+class A():
+    def __init__(self, tex_file, atlas_file, save_path = "."):
+        self.tex_file = tex_file
+        self.atlas_file = atlas_file
+        self.save_path = save_path
 
 
 if __name__ == '__main__':
-    args = args_got()
+    #args = args_got()
+    args = A(r"./vfx/vfx.png", r"./vfx/vfx.atlas")
     run(args)
 

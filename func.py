@@ -29,7 +29,12 @@ def spilt_tex(tex_file, group, name, save_path):
                 val = val.rotate(-90, expand=True)
 
             group[var]['pic'] = val
-            var = var.replace("/", "-")
+            #var = var.replace("/", "-")
+            
+            try:
+                os.makedirs(f"{save_path}/out/{name}/{'/'.join(var.split('/')[:-1])}")
+            except FileExistsError:
+                pass
             path = f"{save_path}/out/{name}/{var}.png"
             val.save(path)
         except Exception as info:
@@ -45,7 +50,7 @@ def pos_spilt(file: str):
                               r'\s{2}xy:\s(\d+),\s(\d+)\n'
                               r'\s{2}size:\s(\d+),\s(\d+)\n'
                               r'\s{2}orig:\s\d+,\s\d+\n'
-                              r'\s{2}offset:\s0,\s0\n'
+                              r'\s{2}offset:\s(\d+),\s(\d+)\n'
                               r'\s{2}index:\s-1')
     group = {}
 
